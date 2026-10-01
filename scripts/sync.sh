@@ -109,6 +109,8 @@ sanitize() {
             -e '/API key$/d' \
             -e "/^alias logoutt /d" \
             -e "s#$SRC#\$HOME#g" "$f"
+        # machine-local secrets live in ~/.zshrc.local, which is never synced
+        grep -q 'zshrc.local' "$f" || printf '\n# machine-local settings and secrets (not tracked)\n[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local\n' >> "$f"
     fi
     f="$REPO/config/.p10k.zsh"
     [[ -f "$f" ]] && sed -i "s#$SRC#\$HOME#g" "$f"

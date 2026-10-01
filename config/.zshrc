@@ -147,3 +147,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+# machine-local settings and secrets (not tracked)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
