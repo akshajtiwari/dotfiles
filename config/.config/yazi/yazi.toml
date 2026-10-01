@@ -1,0 +1,97 @@
+# yazi.toml
+[mgr]
+show_hidden = true
+
+[opener]
+
+wallpaper = [
+{ run = 'awww img %s1', desc = "Set as Wallpaper" }
+]
+
+imageedit = [
+{ run = 'pinta "$@"', desc = "Pinta Image Editor" }
+]
+
+image = [
+{ run = 'pqiv -i --scale-mode-screen-fraction=0.33 "$@"', desc = "Pqiv Image Viewer" },
+]
+
+text = [
+	{ run = 'nvim "$@"', block = true, desc = "Neovim Text Editor"},
+]
+
+extract = [
+ {  run = '7z x "$@" -o*',  desc = "Extract with 7zip" }
+]
+
+extracttar = [
+{ run = 'tar -xf "$@"', desc = "Extrar .tar.xz file" }
+]
+
+music = [
+{ run = 'ffplay -nodisp -autoexit "$@"' },
+]
+
+video = [
+{ run = 'ffplay "$@"' },
+]
+
+[open]
+
+rules = [
+
+{ url = "*.zip", use = "extract" },
+
+{ url = "*.rar", use = "extract" },
+
+{ url = "*.7z", use = "extract" },
+
+{ url = "*.gif", use = "image" },
+
+{ url = "*.jpg", use =  [ "image", "imageedit", "wallpaper" ] },
+
+{ url = "*.png", use =  [ "image", "imageedit", "wallpaper" ] },
+
+{ url = "*.conf", use = "text" },
+
+{ url = "*.toml", use = "text" },
+
+{ url = "*.txt", use = "text" },
+
+{ url = "*.ini", use = "text" },
+
+{ url = "*.jsonc", use = "text" },
+
+{ url = "*.yml", use = "text" },
+
+{ url = "*.json", use = "text" },
+
+{ url = "*.lua", use = "text" },
+
+{ url = "*.md", use = "text" },
+
+{ url = "*.css", use = "text" },
+
+{ url = "*.js", use = "text" },
+
+{ url = "*.bash*", use = "text" },
+
+{ url = "*.mp3", use = "music"},
+
+{ url = "*.wav", use = "music"},
+
+{ url = "*.ogg", use = "music"},
+
+{ url = "*.mkv", use = "video"},
+
+{ url = "*.mp4", use = "video"},
+
+{ url = "*.tar.xz", use = "extracttar"},
+
+{ url = "*.tar.gz", use = "extracttar"}
+
+]
+
+[[plugin.prepend_previewers]]
+url = "*/"
+run = "eza-preview"
