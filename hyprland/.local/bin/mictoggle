@@ -1,0 +1,41 @@
+#!/bin/bash
+
+IS_SILENT=0
+DO_CHECK=0
+
+for arg in "$@"; do
+    case "$arg" in
+        --silent) IS_SILENT=1 ;;
+        --is-muted) DO_CHECK=1 ;;
+        --help|-h)
+            echo "Usage: $0 [--silent|--is-muted]"
+            exit 0
+        ;;
+        *) WHAT="$arg" ;;
+    esac
+done
+
+if [[ $DO_CHECK == 1 ]]; then 
+    IS_MUTED=$(pactl get-source-mute @DEFAULT_SOURCE@)
+    [[ $IS_MUTED == *"yes" ]] && echo true || echo false
+    exit 0 
+fi 
+
+pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+IS_MUTED=$(pactl get-source-mute @DEFAULT_SOURCE@)
+
+[[ $IS_SILENT == 1 ]] && exit 0
+
+if [[ $IS_MUTED == *"no" ]]; then
+    MESSAGE="Microphone is unmuted"
+    ICON="notification-microphone-sensitivity-high"
+else
+    MESSAGE="Microphone is muted"
+    ICON="notification-microphone-sensitivity-muted"
+fi
+
+notify-send --hint string:x-canonical-private-synchronous:microphone \
+            --icon="$ICON" \
+            --app-name="$0" \
+            "Changed microphone state" "$MESSAGE"

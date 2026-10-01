@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+ACTION="" # "on", "off", "check", or empty (toggle)
+WHAT="idle"
+
+for arg in "$@"; do
+    case "$arg" in
+        --on) ACTION="on" ;;
+        --off) ACTION="off" ;;
+        --is-running) ACTION="check" ;;
+        --help|-h)
+            echo "Usage: $0 [--on|--off|--is-running] [what]"
+            exit 0
+        ;;
+        *) WHAT="$arg" ;;
+    esac
+done
+
+GREP="systemd-inhibit --what=${WHAT} sleep infinity"
+
+is_running() { 
+    pgrep -f -- "$GREP" > /dev/null 2>&1; 
+}
+
+start() {
+    if is_running; then
+        return
+    fi
+
+     notify-send  -i my-caffeine-on-symbolic -a caffeine \
+        "Preventing sleep..." "Enabled inhibiting for $WHAT"
+
+    nohup bash -c "$GREP" >/dev/null 2>&1 &
+}
+
+stop() {
+    if ! is_running; then
+        return
+    fi
+
+    notify-send  -i my-caffeine-off-symbolic -a caffeine \
+        "Disabling preventing..." "Disabling inhibiting for $WHAT"
+
+    pkill -f -- "$GREP"
+}
+
+if [[ "$ACTION" == "on" ]]; then
+    start
+elif [[ "$ACTION" == "off" ]]; then
+    stop
+elif [[ "$ACTION" == "check" ]]; then
+    if is_running; then echo true; else echo false; fi
+else
+    if is_running; then stop; else start; fi
+fi

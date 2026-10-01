@@ -1,0 +1,24 @@
+#!/bin/bash
+
+FILE=$XDG_PICTURES_DIR/screenshots/"$(date +"%Y-%m-%d_%H-%M-%S").png"
+
+if [[ "$1" == "--select" ]]; then
+    if which flameshot >/dev/null 2>&1; then
+        flameshot gui --path $FILE
+    else
+        grim -g "$(slurp)" $FILE
+    fi
+
+    STATUS=$?
+else
+    grim $FILE
+    STATUS=$?
+fi
+
+if [[ $STATUS -eq 0 ]]; then
+    wl-copy < $FILE &
+
+    notify-send --app-name "$0" \
+                --icon "$FILE" \
+                "New screenshot" "$FILE"
+fi
