@@ -1,0 +1,118 @@
+{
+    "$schema": "/etc/xdg/swaync/configschema.json",
+    "positionX": "right",
+    "positionY": "top",
+    "cssPriority": "user",
+    "control-center-width": 430,
+    "fit-to-screen": false,
+    "notification-window-width": 380,
+    "notification-icon-size": 40,
+    "notification-body-image-height": 500,
+    "notification-body-image-width": 500,
+    "notification-inline-replies": true,
+    "notification-2fa-action": false,
+    "timeout": 6,
+    "timeout-low": 3,
+    "timeout-critical": 0,
+    "keyboard-shortcuts": true,
+    "image-visibility": "when-available",
+    "transition-time": 200,
+    "hide-on-clear": false,
+    "hide-on-action": false,
+    "script-fail-notify": true,
+    "widgets": [
+        "title",
+        "buttons-grid",
+        "volume",
+        "backlight",
+        "mpris",
+        "dnd",
+        "notifications"
+    ],
+    "widget-config": {
+        "backlight": {
+            "device": "intel_backlight",
+            "label": "󰃠",
+            "slider": true,
+            "min": 10
+        },
+        "volume": {
+            "device": "default",
+            "label": "",
+            "slider": true
+        },
+        "dnd": {
+            "text": "Do not disturb"
+        },
+        "mpris": {
+            "image-size": 100,
+            "image-radius": 10,
+            "autohide": false,
+            "blacklist": [
+                "org.mpris.MediaPlayer2.playerctld"
+            ]
+        },
+        "buttons-grid": {
+            "actions": [
+                {
+                    "label": "󰖩",
+                    "type": "toggle",
+                    "command": "bash -c 'swaync-client -cp; $HOME/.local/bin/qp wifi'",
+                    "update-command": "bash -c 'nmcli radio wifi | grep -q enabled && echo true || echo false'"
+                },
+                {
+                    "label": "󰂯",
+                    "type": "toggle",
+                    "command": "bash -c 'swaync-client -cp; $HOME/.local/bin/qp bluetooth'",
+                    "update-command": "bash -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
+                },
+                {
+                    "label": "󰌪",
+                    "type": "toggle",
+                    "command": "bash -c '$HOME/.local/bin/powerprofile --toggle-quiet'",
+                    "update-command": "bash -c '$HOME/.local/bin/powerprofile --is-quiet'"
+                },
+                {
+                    "label": "",
+                    "type": "toggle",
+                    "command": "bash -c '$HOME/.local/bin/caffeine'",
+                    "update-command": "bash -c '$HOME/.local/bin/caffeine --is-running'"
+                },
+                {
+                    "label": "",
+                    "type": "toggle",
+                    "command": "bash -c '$HOME/.local/bin/mictoggle --silent'",
+                    "update-command": "bash -c '$HOME/.local/bin/mictoggle --is-muted'"
+                },
+                {
+                    "label": "󰋩",
+                    "command": "bash -c 'swaync-client -cp; $HOME/.local/bin/wallpicker'"
+                },
+                {
+                    "label": "󰃟",
+                    "type": "toggle",
+                    "command": "bash -c '$HOME/.local/bin/themesw'",
+                    "update-command": "bash -c '[ $($HOME/.local/bin/themesw --current) = light ] && echo true || echo false'"
+                },
+                {
+                    "label": "󰏘",
+                    "command": "bash -c 'swaync-client -cp; $HOME/.config/scripts/theme_picker.sh'"
+                },
+                {
+                    "label": "",
+                    "command": "bash -c 'swaync-client -cp; wlogout'"
+                }
+            ]
+        },
+        "title": {
+            "text": "Notifications",
+            "clear-all-button": true,
+            "button-text": "Clear all"
+        }
+    },
+    "control-center-height": 720,
+    "control-center-margin-top": 8,
+    "control-center-margin-right": 10,
+    "control-center-margin-bottom": 8,
+    "notification-grouping": true
+}
