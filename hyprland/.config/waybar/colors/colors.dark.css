@@ -1,0 +1,19 @@
+/* Tokyo night dark enhanced color theme */
+
+/* Catppuccin Mocha — drop this at ~/.config/waybar/colors/colors.css */
+
+@define-color fg #cdd6f4;            /* text */
+@define-color module-bg #1e1e2e;     /* base */
+@define-color tooltip-bg #181825;    /* mantle */
+@define-color highlight #45475a;     /* surface1 — menu/hover highlight */
+@define-color inactive #6c7086;      /* overlay0 */
+@define-color workspace-fg #a6adc8;  /* subtext0 */
+
+@define-color red #f38ba8;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color blue #89b4fa;
+
+/* extra two, only used by the workspace styling below */
+@define-color maroon #eba0ac;
+@define-color crust #11111b;
