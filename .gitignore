@@ -1,0 +1,17 @@
+# runtime state and caches never belong in the repo
+__pycache__/
+*.pyc
+*.bak
+*.swp
+*.log
+.DS_Store
+.dotfiles-backup/
+hyprland/.config/themesw/next
+# local secrets, just in case
+*.env
+.env*
+*secret*
+*token*
+id_rsa*
+*.pem
+*.key
