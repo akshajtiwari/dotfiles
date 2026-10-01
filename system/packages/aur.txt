@@ -1,0 +1,10 @@
+# AUR packages (installed with yay or paru by install.sh).
+
+tofi                            # launcher, clipboard and theme picker UI
+wlogout                         # power menu
+grimblast-git                   # screenshots
+python-pywal16                  # provides `wal`, colours generated from the wallpaper
+bibata-cursor-theme
+tokyonight-gtk-theme-git        # light GTK theme
+kripton-theme-git               # dark GTK theme
+jome                            # emoji picker (Super+E)

@@ -1,0 +1,74 @@
+# Official-repo packages the setup depends on (one per line, '#' = comment).
+# Installed with: sudo pacman -S --needed
+
+# ── Hyprland core ─────────────────────────────
+hyprland
+hyprlock
+hypridle
+hyprpicker
+xdg-desktop-portal
+xdg-desktop-portal-hyprland     # screen sharing
+xdg-desktop-portal-gtk
+polkit-kde-agent
+
+# ── Bar, notifications, launcher, wallpapers ──
+waybar
+swaync
+nwg-dock-hyprland
+awww                            # wallpaper daemon (successor of swww)
+cava                            # audio visualiser (waybar widget)
+
+# ── Utilities used by scripts and binds ───────
+grim
+slurp
+wl-clipboard
+cliphist
+wtype
+jq
+libnotify
+imagemagick                     # thumbnails for the wallpaper picker (webp fallback)
+playerctl
+pamixer
+brightnessctl
+rsync
+fzf
+wf-recorder
+
+# ── Audio ─────────────────────────────────────
+pipewire
+pipewire-pulse
+wireplumber
+
+# ── Network, Bluetooth, power ─────────────────
+networkmanager
+nm-connection-editor
+bluez
+bluez-utils
+blueman
+tlp
+tlp-pd                          # power-profiles-daemon compatible D-Bus API
+
+# ── Toolkits used by the overlay panels ───────
+gtk3
+gtk4
+gtk4-layer-shell
+python-gobject
+papirus-icon-theme
+nwg-look
+qt6ct
+kvantum
+
+# ── Terminal and everyday apps ────────────────
+kitty
+zsh
+neovim
+btop
+fastfetch
+yazi
+mpv
+dolphin
+
+# ── Fonts ─────────────────────────────────────
+ttf-cascadia-code-nerd
+ttf-jetbrains-mono-nerd
+ttf-nerd-fonts-symbols

@@ -1,0 +1,5 @@
+# System services enabled by `install.sh --system` (systemctl enable --now).
+bluetooth.service
+NetworkManager.service
+tlp.service
+tlp-pd.service
