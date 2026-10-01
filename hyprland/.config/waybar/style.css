@@ -30,6 +30,7 @@
     padding: 1px 7px;
 }
 
+#custom-hotspot,
 #network, 
 #tray {
     padding: 1px 6px;
@@ -206,4 +207,8 @@ trough highlight {
     font-size: 13px;
     letter-spacing: 1px;
     color: @blue;
+}
+
+#custom-hotspot.on {
+    color: @green;
 }

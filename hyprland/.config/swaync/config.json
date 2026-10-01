@@ -67,6 +67,12 @@
                     "update-command": "bash -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
                 },
                 {
+                    "label": "󰀂",
+                    "type": "toggle",
+                    "command": "bash -c '$HOME/.local/bin/hotspot --toggle'",
+                    "update-command": "bash -c '$HOME/.local/bin/hotspot --is-on'"
+                },
+                {
                     "label": "󰌪",
                     "type": "toggle",
                     "command": "bash -c '$HOME/.local/bin/powerprofile --toggle-quiet'",

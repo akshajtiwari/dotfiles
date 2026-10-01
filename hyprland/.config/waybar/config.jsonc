@@ -36,7 +36,7 @@
     "group/right" : {
         "orientation": "horizontal",
         "modules" : [
-            "bluetooth", "group/group-volume", "group/group-backlight", "network", "tray"
+            "custom/hotspot", "bluetooth", "group/group-volume", "group/group-backlight", "network", "tray"
         ]
     },
 

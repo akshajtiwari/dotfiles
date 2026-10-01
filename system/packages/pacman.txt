@@ -72,3 +72,4 @@ dolphin
 ttf-cascadia-code-nerd
 ttf-jetbrains-mono-nerd
 ttf-nerd-fonts-symbols
+iw

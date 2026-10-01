@@ -1,0 +1,70 @@
+#!/bin/bash
+# Wi-Fi hotspot helper (NetworkManager, no root needed)
+#   hotspot --toggle     start / stop the hotspot
+#   hotspot --is-on      prints true|false
+#   hotspot --waybar     JSON for a waybar custom module (empty line when off)
+# Profile: first AP-mode profile, or the name in ~/.config/hotspot.conf (HOTSPOT_PROFILE=...).
+# If none exists, one is created on first use (SSID "<hostname>-hotspot", random password).
+
+CONF="$HOME/.config/hotspot.conf"
+[ -f "$CONF" ] && . "$CONF"
+
+ap_profiles() {
+    nmcli -t -f NAME,TYPE connection show | while IFS= read -r l; do
+        [[ "${l##*:}" == "802-11-wireless" ]] || continue
+        n="${l%:*}"; n="${n//\\:/:}"
+        [[ "$(nmcli -g 802-11-wireless.mode connection show "$n" 2>/dev/null)" == "ap" ]] && echo "$n"
+    done
+}
+
+active_ap() {
+    nmcli -t -f NAME,TYPE connection show --active | while IFS= read -r l; do
+        [[ "${l##*:}" == "802-11-wireless" ]] || continue
+        n="${l%:*}"; n="${n//\\:/:}"
+        [[ "$(nmcli -g 802-11-wireless.mode connection show "$n" 2>/dev/null)" == "ap" ]] && { echo "$n"; return; }
+    done
+}
+
+wifi_dev() { nmcli -t -f DEVICE,TYPE device | awk -F: '$2=="wifi"{print $1; exit}'; }
+
+case "$1" in
+    --is-on)
+        [[ -n "$(active_ap)" ]] && echo true || echo false
+        ;;
+    --waybar)
+        AP=$(active_ap)
+        [[ -z "$AP" ]] && { echo ""; exit 0; }
+        SSID=$(nmcli -g 802-11-wireless.ssid connection show "$AP")
+        DEV=$(wifi_dev)
+        N=$(iw dev "$DEV" station dump 2>/dev/null | grep -c '^Station')
+        printf '{"text":"\U000f0002","class":"on","tooltip":"Hotspot on\\n%s\\n%s connected"}\n' "$SSID" "$N"
+        ;;
+    --toggle|"")
+        AP=$(active_ap)
+        if [[ -n "$AP" ]]; then
+            nmcli connection down "$AP" >/dev/null 2>&1
+            notify-send --app-name hotspot --icon network-wireless-hotspot "Hotspot off" "$(nmcli -g 802-11-wireless.ssid connection show "$AP")"
+            exit 0
+        fi
+        nmcli radio wifi on >/dev/null 2>&1
+        PROFILE="${HOTSPOT_PROFILE:-$(ap_profiles | head -n1)}"
+        if [[ -z "$PROFILE" ]]; then
+            PASS=$(head -c 12 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c 12)
+            SSID="$(hostname)-hotspot"
+            if nmcli device wifi hotspot ifname "$(wifi_dev)" con-name Hotspot ssid "$SSID" password "$PASS" >/dev/null 2>&1; then
+                nmcli connection modify Hotspot connection.autoconnect no
+                notify-send --app-name hotspot --icon network-wireless-hotspot "Hotspot created" "SSID: $SSID\nPassword: $PASS"
+            else
+                notify-send --app-name hotspot --icon dialog-error "Hotspot failed" "Could not create a hotspot profile"
+            fi
+            exit 0
+        fi
+        if OUT=$(nmcli connection up "$PROFILE" 2>&1); then
+            notify-send --app-name hotspot --icon network-wireless-hotspot "Hotspot on" "$(nmcli -g 802-11-wireless.ssid connection show "$PROFILE")"
+        else
+            notify-send --app-name hotspot --icon dialog-error "Hotspot failed" "${OUT##*$'\n'}"
+        fi
+        ;;
+    *)
+        echo "Usage: hotspot [--toggle|--is-on|--waybar]"; exit 1 ;;
+esac

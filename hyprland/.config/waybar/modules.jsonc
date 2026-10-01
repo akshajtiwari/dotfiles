@@ -186,6 +186,14 @@
     }
     },
 
+    "custom/hotspot": {
+        "exec": "~/.local/bin/hotspot --waybar",
+        "return-type": "json",
+        "interval": 3,
+        "format": "{}",
+        "on-click": "~/.local/bin/hotspot --toggle"
+    },
+
     "custom/cava": {
         "exec": "~/.config/waybar/scripts/cava.sh",
         "format": "{}",

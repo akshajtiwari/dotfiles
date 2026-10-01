@@ -8,7 +8,8 @@ awww img "$FILE" \
   --transition-type outer \
   --transition-duration 0.8
 
-wal -i "$FILE" -n
+# optional: regenerate terminal colours when pywal is installed
+command -v wal >/dev/null && wal -i "$FILE" -n
 
 # SIGUSR2 live-reload crashes waybar, so restart it cleanly
 pkill -x waybar

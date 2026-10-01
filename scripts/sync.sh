@@ -132,7 +132,7 @@ sync_dir  $H .config/themesw/units --include='10-gtk' --include='20-waybar' --in
           --include='30-nvim' --include='30-swaync' --exclude='*'
 sync_file $H .config/xdg-desktop-portal/portals.conf
 for b in qp wallpicker powerprofile caffeine mictoggle themesw toggle_bluetooth brightness volume \
-         playerctl_volume cycle_layout refreshrate screenrec screenshot powersafe; do
+         playerctl_volume cycle_layout refreshrate screenrec screenshot powersafe hotspot; do
     sync_file $H ".local/bin/$b"
 done
 
