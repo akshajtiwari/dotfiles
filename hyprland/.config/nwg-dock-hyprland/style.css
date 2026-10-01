@@ -1,0 +1,75 @@
+@import "colors/colors.css";
+
+* {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+window {
+    border-radius: 30px;
+    background: transparent;
+}
+
+#box {
+	padding: 10px 5px;
+    background: @background;
+    border-radius: 30px;
+}
+
+button, image {
+	background: none;
+	box-shadow: none;
+}
+
+button {
+    border-radius: 100%;
+    padding: 6px;
+    background: @button-bg;
+    margin: 2px; 
+}
+
+button:hover {
+	background: @button-highlight;
+}
+
+button:focus {
+    background: @button-bg;
+}
+
+tooltip {
+    border-radius: 15px;
+    background: @background;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+tooltip label {
+    padding: 2px 10px;
+	font-weight: bold;
+    color: @fg;
+    border: none;
+    outline: none;
+}
+
+menu {
+    border-radius: 10px;
+    font-weight: 700;
+    background: @menu-bg;
+    color: @fg;
+    padding: 0;
+}
+
+menu > * {
+    padding: 3px 0px;
+    min-width: 5px;
+}
+
+menu > *:hover {
+    border-radius: 10px;
+    background-color: @highlight;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

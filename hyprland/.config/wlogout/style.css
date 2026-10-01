@@ -1,0 +1,88 @@
+* {
+    font-family: JetBrains Mono, Symbols Nerd Font;
+    font-size: 24px;
+    transition-property: background-color;
+    transition-duration: 0.7s;
+}
+
+window {
+    background-color: #11111b;
+    /* border-radius: 10px; */
+}
+
+button {
+    background-color: #11111b;
+    border-style: solid;
+    /* border-width: 2px; */
+    border-radius: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15%;
+    margin: 15px;
+}
+
+button:active,
+button:hover {
+    background-color: #cdd6f4;
+}
+
+button:focus {
+    background-color: #cdd6f4;
+}
+
+#lock:hover {
+    background-image: image(url("../assets/wlogout/assets/lock.png"), url("../assets/wlogout/assets/lock.png"));
+}
+
+#lock {
+    background-image: image(url("../assets/wlogout/assets/lock-hover.png"), url("../assets/wlogout/assets/lock-hover.png"));
+    color: #11111b;
+}
+
+#logout:hover {
+    background-image: image(url("../assets/wlogout/assets/logout.png"), url("../assets/wlogout/assets/logout.png"));
+}
+
+#logout {
+    background-image: image(url("../assets/wlogout/assets/logout-hover.png"), url("../assets/wlogout/assets/logout-hover.png"));
+    color: #11111b;
+}
+
+#suspend:hover {
+    background-image: image(url("../assets/wlogout/assets/sleep.png"), url("../assets/wlogout/assets/sleep.png"));
+}
+
+#suspend {
+    background-image: image(url("../assets/wlogout/assets/sleep-hover.png"), url("../assets/wlogout/assets/sleep-hover.png"));
+    color: #11111b;
+}
+
+#shutdown:hover {
+    background-image: image(url("../assets/wlogout/assets/power.png"), url("../assets/wlogout/assets/shutdown.png"));
+}
+
+#shutdown {
+    background-image: image(url("../assets/wlogout/assets/power-hover.png"), url("../assets/wlogout/assets/power-hover.png")); 
+    color: #11111b;
+}
+
+#reboot:hover {
+    background-image: image(url("../assets/wlogout/assets/restart.png"), url("../assets/wlogout/assets/reboot.png"));
+}
+
+#reboot {
+    background-image: image(url("../assets/wlogout/assets/restart-hover.png"), url("../assets/wlogout/assets/restart-hover.png"));
+    color: #11111b;
+}
+
+#exit:hover {
+    background-image: image(url("../assets/wlogout/assets/restart.png"), url("../assets/wlogout/assets/restart.png"));
+    background-color: #11111b;
+
+}
+
+#exit {
+    background-image: image(url("../assets/wlogout/assets/restart-hover.png"), url("../assets/wlogout/assets/restart-hover.png"));
+    color: #11111b;
+    background-color: #cdd6f4;
+}
