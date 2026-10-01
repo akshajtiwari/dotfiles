@@ -146,6 +146,7 @@ sync_dir  $C .config/nvim
 sync_dir  $C .config/yazi
 sync_dir  $C .config/Kvantum
 sync_dir  $C .config/qt6ct
+sync_dir  $C .config/wireplumber
 sync_dir  $C .config/gtk-3.0 --exclude='bookmarks'
 sync_dir  $C .config/gtk-4.0
 sync_file $C .zshrc
