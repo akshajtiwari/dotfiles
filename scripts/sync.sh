@@ -120,8 +120,8 @@ echo "Syncing from $SRC into $REPO"
 # ───────────────────────────── hyprland package ─────────────────────────────
 H=hyprland
 sync_dir  $H .config/hypr --include='hyprland.lua' --include='hypridle.conf' --include='hyprlock.conf' --exclude='*'
-sync_dir  $H .config/waybar
-sync_dir  $H .config/swaync
+sync_dir  $H .config/waybar --exclude='README.md'
+sync_dir  $H .config/swaync --exclude='README.md'
 sync_dir  $H .config/tofi
 sync_dir  $H .config/wlogout --exclude='icons/'
 sync_dir  $H .config/assets/wlogout
