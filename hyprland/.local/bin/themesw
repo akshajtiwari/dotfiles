@@ -48,10 +48,10 @@ for UNIT in "$THEMESW_DIR"/units/*; do
         wait "$PID"
 
         if [[ $? -ne 0 ]]; then
+            # a broken optional unit must not stop the rest of the theme switch
             notify-send --icon gtk-dialog-error \
                         --app-name "$0" \
-                        'Unit failed!' "$UNIT"
-            exit 1
+                        'Unit failed (continuing)' "$UNIT_NAME"
         fi
     fi
 
