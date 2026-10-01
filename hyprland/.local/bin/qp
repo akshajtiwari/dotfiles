@@ -1,0 +1,3 @@
+#!/bin/sh
+# qp wifi|bluetooth  — toggle the overlay panel
+exec python3 "$HOME/.config/quickpanel/quickpanel.py" "$@"
